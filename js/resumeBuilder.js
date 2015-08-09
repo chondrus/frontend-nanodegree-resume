@@ -89,7 +89,6 @@ var work = {
             "description" : "Quests completed during employment: <br><ul class='work_quest'><li>rescued loyal horse Epona </ul>"
         },
         {
-            // commented out to show below error checking
             "employer"    : "7 Sages",
             "position"    : "Stasis",
             "dates"       : "10-17",
@@ -200,24 +199,51 @@ project.display = function () {
     }
 };
 
+
 /* object for education */
 var education = {
     "schools" : [
         {
-            "name"  : "It's Dangerous to Go Alone Adventuring University",
-            "city"  : "Unnamed Cave",
-            "major" : ["Wooden Sword"],
-            "year"  : "1986"
+            "school" : "LonLon Ranch School of Horseback Riding",
+            "degree" : "Horseback Racing",
+            "dates"  : "17",
+            "city"   : "LonLon Ranch",
+            "major"  : "Epona"
         },
         {
-            "name"  : "LonLon Ranch School of Horseback",
-            "city"  : "Hyrule Field",
-            "major" : ["Epona"],
-            "year" : "1998"
+            "school" : "It's Dangerous to Go Alone Adventuring University",
+            "degree" : "Hyrule Dangers",
+            "dates"  : "8-9",
+            "city"   : "Unnamed Cave",
+            "major"  : "Wooden Sword"
         }
     ]
 };
+education.display = function () {
+    if (education.schools && education.schools.length > 0) {
 
+        $("#education").append(HTMLschoolStart);
+
+        for (var i in education.schools) {
+            var school = education.schools[i];
+            // only append a school if it has all the data
+            if (school.school && school.school.length > 0 &&
+                school.degree && school.degree.length > 0 &&
+                school.dates  && school.dates.length  > 0 &&
+                school.city   && school.city.length   > 0 &&
+                school.major  && school.major.length  > 0    ) {
+
+                $(".education-entry:last").append(
+                    HTMLschoolName.replace("%data%", school.school) +
+                    HTMLschoolDegree.replace("%data%", school.degree) +
+                    HTMLschoolDates.replace("%data%", school.dates) +
+                    HTMLschoolLocation.replace("%data%", school.city) +
+                    HTMLschoolMajor.replace("%data%", school.major)
+                );
+            }
+        }
+    }
+};
 
 /*
  * Use of objects - display everthing on the page
@@ -225,6 +251,7 @@ var education = {
 bio.display();
 work.display();
 project.display();
+education.display();
 
 $(document).click(function(loc) {
     logClicks(loc.pageX, loc.pageY);
