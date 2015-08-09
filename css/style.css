@@ -92,6 +92,10 @@ a {
   display: block;
 }
 
+.twitter {
+  display: inline;
+}
+
 .welcome-message {
   font-style: italic;
   font-size: 18px;

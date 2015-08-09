@@ -13,29 +13,77 @@
  * Setup of objects
  */
 
-/* object for general/hedaer information */
+/* object for general/header information */
 var bio = {
-    "name" : "Link Hylian",
-    "role"  : "Adventurer",
+    "fname"    : "Link",
+    "role"     : "Hero of Time",
     "contacts" : {
-        "mobile"   : "none",
-        "email"    : "none",
         "fairy"    : "Navi",
-        "location" : "Hyrule"
+        "letter"   : "Postman",
+        "owl"      : '<a class="twitter" href="https://twitter.com/zeldauniverse">@zeldauniverse</a>', // no affiliation
+        "place"    : "Hyrule"
     },
-    "welcomeMessage" : "lorem ipsum dolor sit amet etc. etc. etc.",
-    "skills" : [
-        "awesomeness", "adventuring", "ocarina playing"
+    "welcomeMessage" : "Do you understand? &#8594; yes &nbsp;&nbsp;&nbsp; no",
+    "skills"   : [
+        "playing ocarina",
+        "archery, on foot or on horseback",
+        "wielding the Master Sword",
+        "fighting evil"
     ],
-    "bioPic" : "images/fry.jpg"
+    // image credit: http://www.zeldainformer.com/ocarina-of-time/walkthrough/chapter13
+    "bioPic"   : "images/link.jpg"
 };
+
+bio.display = function () {
+    
+    // very top
+    if (bio.role && bio.role.length > 0) {
+        $("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
+    }
+    if (bio.fname && bio.fname.length > 0) {
+        $("#header").prepend(HTMLheaderName.replace("%data%", bio.fname));
+    }
+
+    // contacts
+    if (bio.contacts.fairy && bio.contacts.fairy.length > 0) {
+        $("#topContacts").append(HTMLfairy.replace("%data%", bio.contacts.fairy));
+    }
+    if (bio.contacts.letter && bio.contacts.letter.length > 0) {
+        $("#topContacts").append(HTMLletter.replace("%data%", bio.contacts.letter));
+    }
+    if (bio.contacts.owl && bio.contacts.owl.length > 0) {
+        $("#topContacts").append(HTMLowl.replace("%data%", bio.contacts.owl));
+    }
+    if (bio.contacts.place && bio.contacts.place.length > 0) {
+        $("#topContacts").append(HTMLplace.replace("%data%", bio.contacts.place));
+    }
+
+    // picture and welcome
+    if (bio.bioPic && bio.bioPic.length > 0) {
+        $("#header").append(HTMLbioPic.replace("%data%", bio.bioPic));
+    }
+    if (bio.welcomeMessage && bio.welcomeMessage.length > 0) {
+        $("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
+    }
+
+    // skills
+    if (bio.skills && bio.skills.length > 0) {
+        $("#header").append(HTMLskillsStart);
+
+        for (var skill in bio.skills) {
+            var formatedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+            $("#header").append(formatedSkill);
+        }
+    }
+};
+
 
 /* object for work information */
 var work = {
     "jobs" : [
         {
             "employer"    : "7 Sages",
-            "position"    : "Adventurer",
+            "position"    : "Hero of Time",
             "dates"       : "???-present",
             "location"    : "Temple of Time (primarily remote)",
             "description" : "words words words words"
@@ -49,7 +97,7 @@ var work = {
         },
         {
             "employer"    : "Princess Zelda",
-            "position"    : "Adventurer",
+            "position"    : "Adventurer/ Jr. Hero",
             "dates"       : "???",
             "location"    : "Hyrule Castle (primarily remote)",
             "description" : "loreim ipsum..."
@@ -155,23 +203,8 @@ var education = {
  * Use of objects - display everthing on the page
  */
 
-/* header */
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
 
-$("#header").append(HTMLbioPic.replace("%data%", bio.bioPic));
-
-if (bio.skills.length > 0) {
-    $("#header").append(HTMLskillsStart);
-
-    for (var skill in bio.skills) {
-        var formatedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-        $("#header").append(formatedSkill);
-    }
-}
-
+bio.display();
 displayWork();
 project.display();
 
