@@ -1,4 +1,19 @@
-/* general information */
+/*
+ * Name: resumeBuild.js
+ * Description: Bulk of information for the page contained here
+ * 
+ * Credit: structure comes from lessons in Udacity's 'JavaScript Basics' course
+ *
+ * Forked from: 
+ *    https://github.com/udacity/frontend-nanodegree-resume
+ *    1a6a2696af0107d07afd3c54951f5076329cb0bd
+ */
+
+/*
+ * Setup of objects
+ */
+
+/* object for general/hedaer information */
 var bio = {
     "name" : "Link Hylian",
     "role"  : "Adventurer",
@@ -15,6 +30,7 @@ var bio = {
     "bioPic" : "images/fry.jpg"
 };
 
+/* object for work information */
 var work = {
     "jobs" : [
         {
@@ -47,7 +63,27 @@ var work = {
         }
     ]
 };
+function displayWork () {
+    for (var job in work.jobs) {
+        $("#workExperience").append(HTMLworkStart);
 
+        var formattedEmployeer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+        var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].position);
+        var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+        var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+        var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+
+        $(".work-entry:last").append(
+            formattedEmployeer +
+            formattedTitle +
+            formattedDates +
+            formattedLocation +
+            formattedDescription
+        );
+    }
+}
+
+/* object for project/quest information */
 var project = {
     "projects" : [
         {
@@ -74,67 +110,6 @@ var project = {
     //     }
     // ],
 };
-
-var education = {
-    "schools" : [
-        {
-            "name"  : "It's Dangerous to Go Alone Adventuring University",
-            "city"  : "Unnamed Cave",
-            "major" : ["Wooden Sword"],
-            "year"  : "1986"
-        },
-        {
-            "name"  : "LonLon Ranch School of Horseback",
-            "city"  : "Hyrule Field",
-            "major" : ["Epona"],
-            "year" : "1998"
-        }
-    ]
-};
-
-
-/* header */
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-
-$("#header").append(HTMLbioPic.replace("%data%", bio.bioPic));
-
-if (bio.skills.length > 0) {
-    $("#header").append(HTMLskillsStart);
-
-    for (var skill in bio.skills) {
-        var formatedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-        $("#header").append(formatedSkill);
-    }
-}
-
-/* work */
-function displayWork () {
-    for (var job in work.jobs) {
-        $("#workExperience").append(HTMLworkStart);
-
-        var formattedEmployeer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-        var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].position);
-        var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-        var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-        var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-
-        $(".work-entry:last").append(
-            formattedEmployeer +
-            formattedTitle +
-            formattedDates +
-            formattedLocation +
-            formattedDescription
-        );
-    }
-}
-
-displayWork();
-
-
-/* projects */
 project.display = function () {
 
     for (var i in project.projects) {
@@ -157,6 +132,47 @@ project.display = function () {
     }
 };
 
+/* object for education */
+var education = {
+    "schools" : [
+        {
+            "name"  : "It's Dangerous to Go Alone Adventuring University",
+            "city"  : "Unnamed Cave",
+            "major" : ["Wooden Sword"],
+            "year"  : "1986"
+        },
+        {
+            "name"  : "LonLon Ranch School of Horseback",
+            "city"  : "Hyrule Field",
+            "major" : ["Epona"],
+            "year" : "1998"
+        }
+    ]
+};
+
+
+/*
+ * Use of objects - display everthing on the page
+ */
+
+/* header */
+var formattedName = HTMLheaderName.replace("%data%", bio.name);
+var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
+
+$("#header").append(HTMLbioPic.replace("%data%", bio.bioPic));
+
+if (bio.skills.length > 0) {
+    $("#header").append(HTMLskillsStart);
+
+    for (var skill in bio.skills) {
+        var formatedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+        $("#header").append(formatedSkill);
+    }
+}
+
+displayWork();
 project.display();
 
 $(document).click(function(loc) {
