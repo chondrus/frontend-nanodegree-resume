@@ -153,6 +153,14 @@ ul {
   list-style-type: none;
 }
 
+.work_quest {
+  list-style-type: circle;
+  margin-left: 3em;
+  font-size: 14px;
+  color: #333;
+  line-height: 21px;
+}
+
 .biopic {
   float: left;
   padding: 10px;

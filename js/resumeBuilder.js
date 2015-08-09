@@ -84,52 +84,72 @@ var work = {
         {
             "employer"    : "7 Sages",
             "position"    : "Hero of Time",
-            "dates"       : "???-present",
-            "location"    : "Temple of Time (primarily remote)",
-            "description" : "words words words words"
+            "dates"       : "17-present",
+            "jobLocation" : "Temple of Time (primarily remote)",
+            "description" : "Quests completed during employment: <br><ul class='work_quest'><li>rescued loyal horse Epona </ul>"
         },
         {
+            // commented out to show below error checking
             "employer"    : "7 Sages",
             "position"    : "Stasis",
-            "dates"       : "???-??? (7 years total)",
-            "location"    : "???",
+            "dates"       : "10-17",
+            "jobLocation" : "???",
             "description" : "..."
         },
         {
             "employer"    : "Princess Zelda",
             "position"    : "Adventurer/ Jr. Hero",
-            "dates"       : "???",
-            "location"    : "Hyrule Castle (primarily remote)",
-            "description" : "loreim ipsum..."
+            "dates"       : "9-10",
+            "jobLocation" : "Hyrule Castle (primarily remote)",
+            "description" : "Quests completed during employement: <br><ul class='work_quest'> <li>acquired Spiritual Stone of Fire <li>acquired Spiritual Stone of Water <li>acquired Master Sword </ul>"
         },
         {
             "employer"    : "Great Deku Tree",
-            "position"    : "Kid without a Fairy",
-            "dates"       : "???",
-            "location"    : "Kokiri Forest",
-            "description" : "Despite lacking a guardian fairy, I..."
+            "position"    : "Kokiri Kid",
+            "dates"       : "0-9",
+            "jobLocation" : "Kokiri Forest",
+            "description" : "Quests completed during employement: <br> <ul class='work_quest'><li>acquired sword<li>acquired shield<li>defeated Queen Gohma<li>acquired Spiritual Stone of the Forest</ul>"
         }
     ]
 };
-function displayWork () {
-    for (var job in work.jobs) {
-        $("#workExperience").append(HTMLworkStart);
+work.display = function () {
 
-        var formattedEmployeer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-        var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].position);
-        var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-        var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-        var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+    if (work.jobs && work.jobs.length > 0) {
 
-        $(".work-entry:last").append(
-            formattedEmployeer +
-            formattedTitle +
-            formattedDates +
-            formattedLocation +
-            formattedDescription
-        );
+        for (var job in work.jobs) {
+            $("#workExperience").append(HTMLworkStart);
+
+            var jobText = "";
+
+            var tempEmp = work.jobs[job].employer;
+            if (tempEmp && tempEmp.length > 0) {
+                jobText = jobText + HTMLworkEmployer.replace("%data%", tempEmp);
+            }
+            
+            var tempTitle = work.jobs[job].position;
+            if (tempTitle && tempTitle.length > 0) {
+                jobText += HTMLworkTitle.replace("%data%", tempTitle);
+            }
+
+            var tempDates = work.jobs[job].dates;
+            if (tempDates && tempDates.length > 0) {
+                jobText += HTMLworkDates.replace("%data%", tempDates);
+            }
+
+            var tempLoc = work.jobs[job].jobLocation;
+            if (tempLoc && tempLoc.length > 0) {
+                jobText +=  HTMLworkLocation.replace("%data%", tempLoc);
+            }
+
+            var tempDesc = work.jobs[job].description;
+            if (tempDesc && tempDesc.length > 0) {
+                jobText += HTMLworkDescription.replace("%data%", tempDesc);
+            }
+
+            $(".work-entry:last").append(jobText);
+        }
     }
-}
+};
 
 /* object for project/quest information */
 var project = {
@@ -202,10 +222,8 @@ var education = {
 /*
  * Use of objects - display everthing on the page
  */
-
-
 bio.display();
-displayWork();
+work.display();
 project.display();
 
 $(document).click(function(loc) {
