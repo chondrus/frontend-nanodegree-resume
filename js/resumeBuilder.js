@@ -150,9 +150,9 @@ work.display = function () {
     }
 };
 
-/* object for project/quest information */
-var project = {
-    "projects" : [
+/* object for heart container pieces information */
+var heart = {
+    "hearts" : [
         {
             "name"   : "jump from block to block by the waterfall",
             "status" : "completed",
@@ -177,20 +177,22 @@ var project = {
     //     }
     // ],
 };
-project.display = function () {
+heart.display = function () {
 
-    for (var i in project.projects) {
+    for (var i in heart.hearts) {
 
-        $("#projects").append(HTMLprojectStart);
+        var iheart = heart.hearts[i];
 
-        var formattedName = HTMLprojectTitle.replace("%data%", project.projects[i].name);
-        var formattedDates = HTMLprojectDates.replace("%data%", project.projects[i].status);
-        var formattedDescription = HTMLprojectDescription.replace("%data%", project.projects[i].reward);
+        $("#hearts").append(HTMLheartStart);
+
+        var formattedName = HTMLheartTitle.replace("%data%", iheart.name);
+        var formattedDates = HTMLheartDates.replace("%data%", iheart.status);
+        var formattedDescription = HTMLheartDescription.replace("%data%", iheart.reward);
 
         // todo: if images...
-        var formattedImage = HTMLprojectImage.replace("%data%", project.projects[i].image);
+        var formattedImage = HTMLheartImage.replace("%data%", iheart.image);
 
-        $(".project-entry:last").append(
+        $(".heart-entry:last").append(
             formattedName +
             formattedDates +
             formattedDescription +
@@ -250,7 +252,7 @@ education.display = function () {
  */
 bio.display();
 work.display();
-project.display();
+heart.display();
 education.display();
 
 $(document).click(function(loc) {

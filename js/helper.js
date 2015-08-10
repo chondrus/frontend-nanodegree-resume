@@ -33,12 +33,12 @@ var HTMLworkDates = '<div class="date-text">%data%</div>';
 var HTMLworkLocation = '<div class="location-text">%data%</div>';
 var HTMLworkDescription = '<p><br>%data%</p>';
 
-// project
-var HTMLprojectStart = '<div class="project-entry"></div>';
-var HTMLprojectTitle = '<a href="#">%data%</a>';
-var HTMLprojectDates = '<div class="date-text">%data%</div>';
-var HTMLprojectDescription = '<p><br>%data%</p>';
-var HTMLprojectImage = '<img src="%data%">';
+// heart container pieces
+var HTMLheartStart = '<div class="heart-entry"></div>';
+var HTMLheartTitle = '<a href="#">%data%</a>';
+var HTMLheartDates = '<div class="date-text">%data%</div>';
+var HTMLheartDescription = '<p><br>%data%</p>';
+var HTMLheartImage = '<img src="%data%">';
 
 // education
 var HTMLschoolStart = '<div class="education-entry"></div>';
