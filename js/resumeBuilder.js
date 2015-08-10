@@ -151,53 +151,54 @@ work.display = function () {
 };
 
 /* object for heart container pieces information */
+/* images from (and text based off of):
+ * http://strategywiki.org/wiki/The_Legend_of_Zelda:_Ocarina_of_Time/Heart_Containers
+ */
 var heart = {
     "hearts" : [
         {
-            "name"   : "jump from block to block by the waterfall",
-            "status" : "completed",
-            "reward" : "rupees",
-            "image"  : "images/197x148.gif"
+            "piece" : "#1. skull kid - friendship through saria's song",
+            "age"   : "child",
+            "about" : "Enter the Kokiri Forest and go through the left tree trunk. Hop onto the small tree trunk, and play Saria's song on your ocarina. The lonely skill kid gives a piece of heart in return for this symbol of friendship.",
+            "image" : ["images/heart1.jpg"]
         },
         {
-            "name"  : "lon lon ranch box moving",
-            "status" : "competed",
-            "reward" : "heart container piece"
+            "piece" : "#6. lost puppy",
+            "age"   : "child",
+            "about" : "At night, in the Hyrule Town Market, head to the back alley.  Find the lady who has lost her white dog (she is inside). Then, go find her white dog at the other end of the Town Market. It will follow you back, and she will be so happy she will give you a piece of heart.",
+            "image" : ["images/heart6_1.jpg", "images/heart6_2.jpg"]
         }
     ]
-    // ],
-    // "mainQuestline" : [
-    //     {
-    //         "name"  : "Great Deku Tree",
-    //         "status" : "cleared"
-    //     },
-    //     {
-    //         "name"  : "Fire Mountain",
-    //         "status" : "ongoing"
-    //     }
-    // ],
 };
 heart.display = function () {
 
-    for (var i in heart.hearts) {
-
-        var iheart = heart.hearts[i];
-
+    if (heart.hearts && heart.hearts.length > 0) {
         $("#hearts").append(HTMLheartStart);
 
-        var formattedName = HTMLheartTitle.replace("%data%", iheart.name);
-        var formattedDates = HTMLheartDates.replace("%data%", iheart.status);
-        var formattedDescription = HTMLheartDescription.replace("%data%", iheart.reward);
+        for (var i in heart.hearts) {
+            var iheart = heart.hearts[i];
 
-        // todo: if images...
-        var formattedImage = HTMLheartImage.replace("%data%", iheart.image);
+            // display the project if it has enough information to display
+            if (iheart.piece && iheart.piece.length > 0 &&
+                iheart.age   && iheart.age.length > 0 &&
+                iheart.about && iheart.about.length > 0) {
 
-        $(".heart-entry:last").append(
-            formattedName +
-            formattedDates +
-            formattedDescription +
-            formattedImage
-        );
+                var formattedName = HTMLheartTitle.replace("%data%", iheart.piece);
+                var formattedDates = HTMLheartDates.replace("%data%", iheart.age);
+                var formattedDescription = HTMLheartDescription.replace("%data%", iheart.about);
+                var heartSection = formattedName + formattedDates + formattedDescription;
+
+                // also diplay image(s) if they exist
+                if (iheart.image && iheart.image.length > 0) {
+                    for (var j in iheart.image) {
+                        var formattedImage = HTMLheartImage.replace("%data%", iheart.image[j]);
+                        heartSection += formattedImage;
+                    }
+                }
+
+                $(".heart-entry:last").append(heartSection);
+            }
+        }
     }
 };
 
