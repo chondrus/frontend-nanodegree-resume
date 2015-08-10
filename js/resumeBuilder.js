@@ -210,14 +210,14 @@ var education = {
             "school" : "LonLon Ranch School of Horseback Riding",
             "degree" : "Horseback Racing",
             "dates"  : "17",
-            "city"   : "LonLon Ranch",
+            "place"  : "LonLon Ranch",
             "major"  : "Epona"
         },
         {
             "school" : "It's Dangerous to Go Alone Adventuring University",
             "degree" : "Hyrule Dangers",
             "dates"  : "8-9",
-            "city"   : "Unnamed Cave",
+            "place"  : "Unnamed Cave",
             "major"  : "Wooden Sword"
         }
     ]
@@ -233,14 +233,14 @@ education.display = function () {
             if (school.school && school.school.length > 0 &&
                 school.degree && school.degree.length > 0 &&
                 school.dates  && school.dates.length  > 0 &&
-                school.city   && school.city.length   > 0 &&
+                school.place   && school.place.length   > 0 &&
                 school.major  && school.major.length  > 0    ) {
 
                 $(".education-entry:last").append(
                     HTMLschoolName.replace("%data%", school.school) +
                     HTMLschoolDegree.replace("%data%", school.degree) +
                     HTMLschoolDates.replace("%data%", school.dates) +
-                    HTMLschoolLocation.replace("%data%", school.city) +
+                    HTMLschoolLocation.replace("%data%", school.place) +
                     HTMLschoolMajor.replace("%data%", school.major)
                 );
             }
@@ -255,11 +255,7 @@ bio.display();
 work.display();
 heart.display();
 education.display();
-
-$(document).click(function(loc) {
-    logClicks(loc.pageX, loc.pageY);
-});
-
+$("#mapDiv").append(googleMap);
 
 
 
