@@ -47,15 +47,19 @@ bio.display = function () {
     // contacts
     if (bio.contacts.fairy && bio.contacts.fairy.length > 0) {
         $("#topContacts").append(HTMLfairy.replace("%data%", bio.contacts.fairy));
+        $("#footerContacts").append(HTMLfairy.replace("%data%", bio.contacts.fairy));
     }
     if (bio.contacts.letter && bio.contacts.letter.length > 0) {
         $("#topContacts").append(HTMLletter.replace("%data%", bio.contacts.letter));
+        $("#footerContacts").append(HTMLletter.replace("%data%", bio.contacts.letter));
     }
     if (bio.contacts.owl && bio.contacts.owl.length > 0) {
         $("#topContacts").append(HTMLowl.replace("%data%", bio.contacts.owl));
+        $("#footerContacts").append(HTMLowl.replace("%data%", bio.contacts.owl));
     }
     if (bio.contacts.place && bio.contacts.place.length > 0) {
         $("#topContacts").append(HTMLplace.replace("%data%", bio.contacts.place));
+        $("#footerContacts").append(HTMLplace.replace("%data%", bio.contacts.place));
     }
 
     // picture and welcome
@@ -256,7 +260,6 @@ work.display();
 heart.display();
 education.display();
 $("#mapDiv").append(googleMap);
-
 
 
 
