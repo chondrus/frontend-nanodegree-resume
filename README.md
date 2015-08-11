@@ -22,6 +22,7 @@ There are a few things I would have liked to add but cut my time too close. Thes
    *  obviously, as it is, the map's locations are inaccurate!
 * Cleaner code - standardize "blank item" checking in `resumeBuilder.js`
 * "Do you understand? -> yes  no" - having that follow the mouse or arrow keys would be a nice reference back to the quest-explaining *Ocarina of Time* dialogs
+* COLORS ARE HARD! investing more time in the CSS styling would pay off
 
 
 ## Overall Question
