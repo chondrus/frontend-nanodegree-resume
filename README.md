@@ -1,4 +1,4 @@
-### Udacity Front-End Nanodegree Project 2
+# Udacity Front-End Nanodegree Project 2 #
 
 A resume for a videogame character (Link, from [the Ocarina of time](https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Ocarina_of_Time)).
 
