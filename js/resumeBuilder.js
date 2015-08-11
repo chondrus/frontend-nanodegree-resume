@@ -180,7 +180,7 @@ heart.display = function () {
 
             // display the project if it has enough information to display
             if (iheart.piece && iheart.piece.length > 0 &&
-                iheart.age   && iheart.age.length > 0 &&
+                iheart.age   && iheart.age.length   > 0 &&
                 iheart.about && iheart.about.length > 0) {
 
                 var formattedName = HTMLheartTitle.replace("%data%", iheart.piece);
@@ -233,8 +233,8 @@ education.display = function () {
             if (school.school && school.school.length > 0 &&
                 school.degree && school.degree.length > 0 &&
                 school.dates  && school.dates.length  > 0 &&
-                school.place   && school.place.length   > 0 &&
-                school.major  && school.major.length  > 0    ) {
+                school.place  && school.place.length  > 0 &&
+                school.major  && school.major.length  > 0) {
 
                 $(".education-entry:last").append(
                     HTMLschoolName.replace("%data%", school.school) +
